@@ -1,0 +1,18 @@
+### parameter demo file
+
+# path to your data
+srcDirectory /local/sda7/cz679/myData/spheres/
+# path to where you want to save results
+destDirectory /local/sda7/cz679/myData/spheres/output/
+# filename of data
+loadFileStem defSphere
+# save name
+saveFileStem modes
+# number of data
+numberOfshell 10
+# bending weight of deformation energy
+bendWeight 1.0
+# membrane weight
+memWeight 1.0
+# fix boundary or not
+fixBoundary 0
