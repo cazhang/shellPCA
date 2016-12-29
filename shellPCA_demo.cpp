@@ -59,11 +59,11 @@ int main(int argc, char **argv)
 		
 		//! compute the elastic average S = min ( sum_{i=1} ^ m( s_i - S))
 		bool fixBoundary = pparser.checkAndGetBool( "fixBoundary" );
-		
-		ElasticAverageFunctional< TriMeshType, MembraneDeformation<TriMeshType>, SimpleBendingDeformation<TriMeshType> > elasticEnergy( pparser, Topology,  geometriesOfInputData );  
-		ElasticAverageGradient< TriMeshType, MembraneDeformation<TriMeshType>, SimpleBendingDeformation<TriMeshType> > elasticGrad( pparser, Topology,  geometriesOfInputData );      
-		ElasticAverageHessian< TriMeshType, MembraneDeformation< TriMeshType>, SimpleBendingDeformation < TriMeshType > > elasticHessian( pparser, Topology,  geometriesOfInputData );
-		
+
+		ElasticAverageFunctional< TriMeshCenterQuadConf, MembraneDeformation<TriMeshCenterQuadConf>, SimpleBendingDeformation<TriMeshCenterQuadConf> > elasticEnergy( pparser, Topology,  geometriesOfInputData );
+		ElasticAverageGradient< TriMeshCenterQuadConf, MembraneDeformation<TriMeshCenterQuadConf>, SimpleBendingDeformation<TriMeshCenterQuadConf> > elasticGrad( pparser, Topology,  geometriesOfInputData );
+		ElasticAverageHessian< TriMeshCenterQuadConf, MembraneDeformation<TriMeshCenterQuadConf>, SimpleBendingDeformation <TriMeshCenterQuadConf> > elasticHessian( pparser, Topology,  geometriesOfInputData );
+
 		//! fix boundary?
 		aol::BitVector BdryMask( Topology.getNumVertices() );
 		if( fixBoundary ){
@@ -100,11 +100,11 @@ int main(int argc, char **argv)
 			{
 				HessMat.allocateMatrix ( i, j, refMesh.getNumVertices(), refMesh.getNumVertices() );
 			}
-			
-		MembraneDeformation<TriMeshType> memDeformation( Topology, pparser );
+
+		MembraneDeformation<TriMeshCenterQuadConf> memDeformation( Topology, pparser );
 		memDeformation.assembleAddDefHessian( ElasticAverage, ElasticAverage, HessMat, gamma1 );
-	
-		SimpleBendingDeformation < TriMeshType > bendDeformation( Topology, pparser ); 
+
+		SimpleBendingDeformation <TriMeshCenterQuadConf> bendDeformation( Topology, pparser );
 		bendDeformation.assembleAddDefHessian( ElasticAverage, ElasticAverage, HessMat, gamma2 );
 		
 		//! Do PCA using aol::pcaOp ( dotProd, ( u_i ))
