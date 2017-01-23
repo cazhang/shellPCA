@@ -3,8 +3,18 @@ The code implements a simple demo to show how to use ShellPCA given a bunch of m
 
 # Dependency
 The code is implemented based on quocMesh library http://numod.ins.uni-bonn.de/software/quocmesh/
-To run the demo, you need to follow instructions there first. 
+To run the demo, you need to follow instructions there first.
 Once installation is done, the script could be added and compiled.
+
+## How to add script to quocMesh
+After you are able to compile and run the quocmesh examples you can run this
+with the following:
+
+    1. Add this folder to quocmesh-opensource/examples.
+    2. Find cmake.selection, which should be in build/cmake.selection
+    3. Under the section with the examples add examples/shellPCA
+    4. Recompile and the shellPCA executable will be under build build/examples/shellPCA
+
 
 # Averaging
 The spheres demo uses linear average although an elastic average is expected to perform better
